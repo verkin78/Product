@@ -1,3 +1,5 @@
+import mathematics.MultiplicationTable;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,6 +35,7 @@ public class Main {
             }
         }
         System.out.println(numbers);
+        MultiplicationTable.countMathTable();
 
         /*Product banana = new Product("Бфнан", "59 руб.", "1 кг");
         Product pineapple = new Product("Ананас", "138 руб.", "1 кг");
