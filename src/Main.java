@@ -37,5 +37,9 @@ public class Main {
         products.add(tomato);
 
         System.out.println(products);
+
+        Set<Recipe> recipes = new HashSet<>();
+        Recipe chicken1 = new Recipe("", "", cheese, cheese, potato, egg, pineapple);
+        System.out.println(chicken1);
     }
 }
