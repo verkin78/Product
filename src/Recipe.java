@@ -1,24 +1,29 @@
+import javax.swing.*;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Recipe {
     private Product[] products;
-    private String recipePrice;
+    private Integer recipePrice;
     private String recipeName;
 
-    private Recipe[] recipes;
 
-    public Recipe(String recipePrice, String recipeName, Product... products) {
+
+    public Recipe( String recipeName, Product... products) {
         this.products = products;
-        this.recipePrice = recipePrice;
+        this.recipePrice = Product.recipeCost(products);
         this.recipeName = recipeName;
     }
+
+
 
     public Product[] getProducts() {
         return products;
     }
 
-    public String getRecipePrice() {
+    public Integer getRecipePrice() {
         return recipePrice;
     }
 
@@ -26,13 +31,15 @@ public class Recipe {
         return recipeName;
     }
 
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Recipe recipe = (Recipe) o;
         if (recipeName.equals(recipeName)) {
-            throw new IllegalArgumentException("HРецепт с таким названием уже существует. Переименуйте рецепт.");
+            throw new IllegalArgumentException("Рецепт с таким названием уже существует. Переименуйте рецепт.");
         }
         return Objects.equals(products,
                 recipe.products) && Objects.equals(recipePrice,
@@ -52,5 +59,25 @@ public class Recipe {
                 ", стоимость " + recipePrice + '\'' +
                 " руб." + "\n";
     }
+
+    public static void createRecipe() {
+        Map<Recipe, Integer> recipes = new HashMap<>();
+        recipes.put(new Recipe("Картошка с говядиной",
+                new Product("Говядина",
+                500,1200),
+                new Product("Картошка",
+                100,3)),3);
+
+
+        for (Recipe recipe : recipes.keySet()) {
+            recipe.recipePrice = recipe.getRecipePrice() * recipes.get(recipe);
+
+        }
+        JOptionPane.showMessageDialog(null, recipes );
+
+    }
+
+
+
 }
 
